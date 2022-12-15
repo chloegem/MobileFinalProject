@@ -2,12 +2,16 @@ package com.example.glow;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,6 +29,7 @@ import java.net.URL;
 import java.net.URLEncoder;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -132,14 +137,106 @@ public class HomeActivity extends AppCompatActivity {
         bmi_result = (TextView) findViewById(R.id.bmi_status);
         date_button = findViewById(R.id.datePickerButton);
         select_date = findViewById(R.id.selectdate);
+
+        shared = getSharedPreferences("com.lau.finalproject", Context.MODE_PRIVATE);
+        user_id = shared.getString("id","");
+        String url = "http://192.168.106.1/Final/Backend/getProfile.php";
+        HomeActivity.DownloadTask task = new HomeActivity.DownloadTask();
+        task.execute(user_id,url);
+
+
+        initDatePicker();
+
+        if (picked_date != ""){
+            date_button.setText(date_display);
+        }
+        else {
+            date_button.setText(getTodaysDate());
+        }
+    }
+
+    private String getTodaysDate() {
+        Calendar cal = Calendar.getInstance();
+        int year = cal.get(Calendar.YEAR);
+        int month = cal.get(Calendar.MONTH);
+        month = month + 1;
+        int day = cal.get(Calendar.DAY_OF_MONTH);
+        return makeDateString(day, month, year);
+    }
+
+    private void initDatePicker() {
+        DatePickerDialog.OnDateSetListener dateSetListener = new DatePickerDialog.OnDateSetListener()
+        {
+            @Override
+            public void onDateSet(DatePicker datePicker, int year, int month, int day)
+            {
+                month = month + 1;
+                String date = makeDateString(day, month, year);
+                date_button.setText(date);
+                picked_date = day + "" + month + "" + year;
+                shared.edit().putString("chosen_date",picked_date).commit();
+                date_button.setText(date);
+                date_display = date;
+            }
+        };
+        Calendar cal = Calendar.getInstance();
+        int year = cal.get(Calendar.YEAR);
+        int month = cal.get(Calendar.MONTH);
+        int day = cal.get(Calendar.DAY_OF_MONTH);
+
+        int style = AlertDialog.THEME_HOLO_LIGHT;
+        date_picker_dialog = new DatePickerDialog(this, style, dateSetListener, year, month, day);
+    }
+
+    private String makeDateString(int day, int month, int year)
+    {
+        return day + " " + getMonthFormat(month) + " " + year;
+    }
+
+    private String getMonthFormat(int month)
+    {
+        if(month == 1)
+            return "JAN";
+        if(month == 2)
+            return "FEB";
+        if(month == 3)
+            return "MAR";
+        if(month == 4)
+            return "APR";
+        if(month == 5)
+            return "MAY";
+        if(month == 6)
+            return "JUN";
+        if(month == 7)
+            return "JUL";
+        if(month == 8)
+            return "AUG";
+        if(month == 9)
+            return "SEP";
+        if(month == 10)
+            return "OCT";
+        if(month == 11)
+            return "NOV";
+        if(month == 12)
+            return "DEC";
+        return "JAN";
+    }
+
+    public void openDatePicker(View view)
+    {
+        date_picker_dialog.show();
     }
 
     public void goWater(View view){
+        startActivity(new Intent(HomeActivity.this, WaterTracker.class));
     }
     public void goFood(View view){
+        startActivity(new Intent(HomeActivity.this, FoodTracker.class));
     }
     public void goSport(View view){
+        startActivity(new Intent(HomeActivity.this, SportTracker.class));
     }
     public void goUser(View view){
+        startActivity(new Intent(HomeActivity.this, UserProfile.class));
     }
 }
