@@ -2,20 +2,29 @@ package com.example.glow;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.util.ArrayList;
 
 public class Login extends AppCompatActivity {
 
@@ -48,11 +57,53 @@ public class Login extends AppCompatActivity {
 
                 String post = URLEncoder.encode("email", "UTF-8")+"="+URLEncoder.encode(first_param, "UTF-8")+"&"+URLEncoder.encode("password","UTF-8")+"="+URLEncoder.encode(second_param, "UTF-8");
                 bw.write(post);
+                bw.flush();
+                bw.close();
+                out.close();
 
+                InputStream in_stream = http.getInputStream();
+                BufferedReader br = new BufferedReader(new InputStreamReader(in_stream, "iso-8859-1"));
+                String result = "";
+                String line = "";
+                while((line = br.readLine())!= null){
+                    result += line;
+                }
+                br.close();
+                in_stream.close();
+                http.disconnect();
+                return result;
 
             } catch (Exception e) {
                 e.printStackTrace();
                 return null;
+            }
+        }
+        protected void onPostExecute(String result){
+            super.onPostExecute(result);
+            if(result.equals("Incorrect Username or password")){
+                Toast.makeText(getApplicationContext(),"Invalid Credentials", Toast.LENGTH_LONG).show();
+            }else{
+                try{
+                    JSONArray array = new JSONArray(result);
+                    ArrayList<Object> list = new ArrayList<>();
+                    JSONObject obj;
+
+                    for (int i = 0; i < array.length(); i ++){
+                        list.add(array.get(i));
+                    }
+                    // receiving the user_id from the api
+                    user_id = new String[array.length()];
+                    obj = (JSONObject) array.get(0);
+                    user_id[0] = obj.getString("user_id");
+                    // adding user_id in a shared preference
+                    shared = getApplicationContext().getSharedPreferences("com.lau.csc489g_finalproject", Context.MODE_PRIVATE);
+                    shared.edit().putString("id",user_id[0]).commit();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                Toast.makeText(getApplicationContext(),"Welcome", Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(Login.this, HomeActivity.class);
+                startActivity(intent);
             }
         }
     }
@@ -60,5 +111,9 @@ public class Login extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         getSupportActionBar().hide();
+        email = (EditText) findViewById(R.id.email);
+        password = (EditText) findViewById(R.id.password);
+        btn = (Button) findViewById(R.id.loginBtn);
+        text = (TextView) findViewById(R.id.textView);
     }
 }
