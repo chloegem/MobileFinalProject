@@ -9,9 +9,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import java.io.BufferedWriter;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.net.URLEncoder;
 
 public class Login extends AppCompatActivity {
 
@@ -34,10 +38,18 @@ public class Login extends AppCompatActivity {
                 url = new URL(params[2]);
 
                 http = (HttpURLConnection) url.openConnection();
+
                 http.setRequestMethod("POST");
                 http.setDoInput(true);
                 http.setDoOutput(true);
-                
+
+                OutputStream out = http.getOutputStream();
+                BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(out,"UTF-8"));
+
+                String post = URLEncoder.encode("email", "UTF-8")+"="+URLEncoder.encode(first_param, "UTF-8")+"&"+URLEncoder.encode("password","UTF-8")+"="+URLEncoder.encode(second_param, "UTF-8");
+                bw.write(post);
+
+
             } catch (Exception e) {
                 e.printStackTrace();
                 return null;
