@@ -180,4 +180,17 @@
         tools:layout_editor_absoluteX="97dp"
         tools:layout_editor_absoluteY="457dp" />
 
+    <TextView
+        android:id="@+id/text_signup"
+        android:layout_width="264dp"
+        android:layout_height="47dp"
+        android:fontFamily="@font/glacialindifferencebold"
+        android:textColor="#D32F2F"
+        android:textColorHighlight="#D32F2F"
+        android:textColorHint="#D32F2F"
+        android:textColorLink="#D32F2F"
+        android:textSize="20sp"
+        tools:layout_editor_absoluteX="73dp"
+        tools:layout_editor_absoluteY="646dp" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
