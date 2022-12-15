@@ -1,7 +1,5 @@
 package com.example.glow;
-
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -90,19 +88,18 @@ public class Login extends AppCompatActivity {
                     for (int i = 0; i < array.length(); i ++){
                         list.add(array.get(i));
                     }
-                    // receiving the user_id from the api
+
                     user_id = new String[array.length()];
                     obj = (JSONObject) array.get(0);
                     user_id[0] = obj.getString("user_id");
-                    // adding user_id in a shared preference
+
                     shared = getApplicationContext().getSharedPreferences("com.lau.csc489g_finalproject", Context.MODE_PRIVATE);
                     shared.edit().putString("id",user_id[0]).commit();
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
                 Toast.makeText(getApplicationContext(),"Welcome", Toast.LENGTH_LONG).show();
-                Intent intent = new Intent(Login.this, HomeActivity.class);
-                startActivity(intent);
+                startActivity(new Intent(Login.this, HomeActivity.class));
             }
         }
     }
@@ -127,7 +124,7 @@ public class Login extends AppCompatActivity {
         if (input_email.equals("") || input_password.equals("")) {
             Toast.makeText(getApplicationContext(), "Missing Info", Toast.LENGTH_LONG).show();
         } else {
-            String url = "http://192.168.106.1/MobileFinal/Backend/login.php";
+            String url = "http://78.108.167.52/MobileFinal/Backend/login.php";
             DownloadTask task = new DownloadTask();
             task.execute(input_email, input_password, url);
         }
