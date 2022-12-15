@@ -3,8 +3,8 @@
  include "connection.php";
 
  if (isset($_POST['user_id']) && isset($_POST['date'])){
-     $user = ($_POST['user_id']);
-     $date = ($_POST['date']);
+     $user = $_POST['user_id'];
+     $date = $_POST['date'];
      if (empty($user)) {
          echo "Empty user id";
          exit();
