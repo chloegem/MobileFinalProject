@@ -29,7 +29,6 @@ public class TrackYourSport extends AppCompatActivity {
     String header_to_display, user_id, picked_date, info_to_add;
     SharedPreferences shared;
 
-    // Implementing the post request of info using this class
     public class DownloadTask extends AsyncTask<String, Void, String> {
 
         protected String doInBackground(String... params) {
@@ -42,19 +41,12 @@ public class TrackYourSport extends AppCompatActivity {
 
             try{
                 url = new URL(params[3]);
-
-                // Opening a connection between android app and the url
                 http = (HttpURLConnection) url.openConnection();
-
                 http.setRequestMethod("POST");
                 http.setDoInput(true);
                 http.setDoOutput(true);
-
-                // I need an Output Stream to sent params to the API
                 OutputStream out_stream = http.getOutputStream();
                 BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(out_stream, "UTF-8"));
-
-                // Sending the information entered to a specific attribute in the database table
                 String post1 = URLEncoder.encode("user_id", "UTF-8")+"="+ URLEncoder.encode(first_param, "UTF-8")+"&"+URLEncoder.encode("date", "UTF-8")+"="+ URLEncoder.encode(second_param, "UTF-8")+"&"+URLEncoder.encode("running", "UTF-8")+"="+ URLEncoder.encode(third_param, "UTF-8");
                 String post2 = URLEncoder.encode("user_id", "UTF-8")+"="+ URLEncoder.encode(first_param, "UTF-8")+"&"+URLEncoder.encode("date", "UTF-8")+"="+ URLEncoder.encode(second_param, "UTF-8")+"&"+URLEncoder.encode("dancing", "UTF-8")+"="+ URLEncoder.encode(third_param, "UTF-8");
                 String post3 = URLEncoder.encode("user_id", "UTF-8")+"="+ URLEncoder.encode(first_param, "UTF-8")+"&"+URLEncoder.encode("date", "UTF-8")+"="+ URLEncoder.encode(second_param, "UTF-8")+"&"+URLEncoder.encode("boxing", "UTF-8")+"="+ URLEncoder.encode(third_param, "UTF-8");
@@ -107,8 +99,6 @@ public class TrackYourSport extends AppCompatActivity {
                 bw.flush();
                 bw.close();
                 out_stream.close();
-
-                // Reading the result from the API
                 InputStream in_stream = http.getInputStream();
                 BufferedReader br = new BufferedReader(new InputStreamReader(in_stream, "iso-8859-1"));
                 String result = "";
@@ -141,8 +131,6 @@ public class TrackYourSport extends AppCompatActivity {
         exercise_info = (EditText) findViewById(R.id.sports_info);
         Intent intent = getIntent();
         header_to_display = intent.getStringExtra("destination");
-
-        // Getting all the transferred data from the previous page and display one of them based on the header of the page
         String running = intent.getStringExtra("running");
         String dancing = intent.getStringExtra("dancing");
         String boxing = intent.getStringExtra("boxing");
