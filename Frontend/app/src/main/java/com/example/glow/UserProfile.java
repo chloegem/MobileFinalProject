@@ -190,21 +190,17 @@ public class UserProfile extends AppCompatActivity {
         DownloadTask task = new DownloadTask();
         task.execute(user_id,url);
     }
-    public void goToHome(View v){
-        Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
-        startActivity(intent);
+    public void goHome(View v){
+        startActivity(new Intent(getApplicationContext(), HomeActivity.class));
     }
-    public void goToWaterTracking(View v){
-        Intent intent = new Intent(getApplicationContext(), WaterTracker.class);
-        startActivity(intent);
+    public void goWater(View v){
+        startActivity(new Intent(getApplicationContext(), WaterTracker.class));
     }
-    public void goToFoodTracking(View v){
-        Intent intent = new Intent(getApplicationContext(), FoodTracker.class);
-        startActivity(intent);
+    public void goFood(View v){
+        startActivity(new Intent(getApplicationContext(), FoodTracker.class));
     }
-    public void goToExerciseTracking(View v){
-        Intent intent = new Intent(getApplicationContext(), SportTracker.class);
-        startActivity(intent);
+    public void goSport(View v){
+        startActivity(new Intent(getApplicationContext(), SportTracker.class));
     }
 
     public void editInfo(View v){

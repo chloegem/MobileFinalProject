@@ -11,4 +11,12 @@ public class SportTracker extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sport_tracker);
     }
-}
+
+    public void goWrite(){
+
+    }
+
+    public void goWater(){}
+    public void goFood(){}
+    public void goUser(){}
+    public void goHome(){}
