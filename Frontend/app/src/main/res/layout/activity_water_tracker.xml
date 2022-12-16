@@ -19,7 +19,7 @@
         app:srcCompat="@drawable/watertracker" />
 
     <ImageView
-        android:id="@+id/imageView19"
+        android:id="@+id/empty1"
         android:layout_width="81dp"
         android:layout_height="114dp"
         app:layout_constraintBottom_toBottomOf="@+id/imageView18"
@@ -31,7 +31,7 @@
         app:srcCompat="@drawable/water" />
 
     <ImageView
-        android:id="@+id/imageView20"
+        android:id="@+id/empty2"
         android:layout_width="81dp"
         android:layout_height="114dp"
         app:layout_constraintBottom_toBottomOf="@+id/imageView18"
@@ -43,7 +43,7 @@
         app:srcCompat="@drawable/water" />
 
     <ImageView
-        android:id="@+id/imageView21"
+        android:id="@+id/empty3"
         android:layout_width="81dp"
         android:layout_height="114dp"
         app:layout_constraintBottom_toBottomOf="@+id/imageView18"
@@ -55,7 +55,7 @@
         app:srcCompat="@drawable/water" />
 
     <ImageView
-        android:id="@+id/imageView22"
+        android:id="@+id/empty4"
         android:layout_width="81dp"
         android:layout_height="114dp"
         app:layout_constraintBottom_toBottomOf="@+id/imageView18"
@@ -67,7 +67,7 @@
         app:srcCompat="@drawable/water" />
 
     <ImageView
-        android:id="@+id/imageView23"
+        android:id="@+id/empty5"
         android:layout_width="81dp"
         android:layout_height="114dp"
         app:layout_constraintBottom_toBottomOf="@+id/imageView18"
@@ -79,7 +79,7 @@
         app:srcCompat="@drawable/water" />
 
     <ImageView
-        android:id="@+id/imageView24"
+        android:id="@+id/empty6"
         android:layout_width="81dp"
         android:layout_height="114dp"
         app:layout_constraintBottom_toBottomOf="@+id/imageView18"
@@ -91,7 +91,7 @@
         app:srcCompat="@drawable/water" />
 
     <ImageView
-        android:id="@+id/imageView25"
+        android:id="@+id/empty7"
         android:layout_width="81dp"
         android:layout_height="114dp"
         app:layout_constraintBottom_toBottomOf="@+id/imageView18"
@@ -103,7 +103,7 @@
         app:srcCompat="@drawable/water" />
 
     <ImageView
-        android:id="@+id/imageView26"
+        android:id="@+id/empty8"
         android:layout_width="81dp"
         android:layout_height="114dp"
         app:layout_constraintBottom_toBottomOf="@+id/imageView18"
@@ -163,7 +163,7 @@
         app:layout_constraintVertical_bias="1.0" />
 
     <TextView
-        android:id="@+id/textView31"
+        android:id="@+id/cups_num"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/glacialindifferencebold"

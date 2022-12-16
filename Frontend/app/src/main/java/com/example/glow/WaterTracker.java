@@ -2,9 +2,12 @@ package com.example.glow;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -56,8 +59,6 @@ public class WaterTracker extends AppCompatActivity {
                 bw.flush();
                 bw.close();
                 out_stream.close();
-
-                // Reading the result from the API
                 InputStream in_stream = http.getInputStream();
                 BufferedReader br = new BufferedReader(new InputStreamReader(in_stream, "iso-8859-1"));
                 String result = "";
@@ -205,5 +206,57 @@ public class WaterTracker extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_water_tracker);
+        getSupportActionBar().hide();
+        empty_cup1 = findViewById(R.id.empty1);
+        empty_cup2 = findViewById(R.id.empty2);
+        empty_cup3 = findViewById(R.id.empty3);
+        empty_cup4 = findViewById(R.id.empty4);
+        empty_cup5 = findViewById(R.id.empty5);
+        empty_cup6 = findViewById(R.id.empty6);
+        empty_cup7 = findViewById(R.id.empty7);
+        empty_cup8 = findViewById(R.id.empty8);
+        cups = findViewById(R.id.cups_num);
+        shared = getSharedPreferences("com.lau.finalproject", Context.MODE_PRIVATE);
+        user_id = shared.getString("id","");
+        picked_date = shared.getString("chosen_date", "");
+        String url = "http://78.108.167.52/Final/Backend/water_track.php";
+        WaterTracker.DownloadTask task = new WaterTracker.DownloadTask();
+        task.execute(user_id, picked_date,url);
+    }
+    public void goHome(View v){
+        Intent intent = new Intent(WaterTracker.this, HomeActivity.class);
+        startActivity(intent);
+    }
+    public void goFood(View v){
+        Intent intent = new Intent(WaterTracker.this, FoodTracker.class);
+        startActivity(intent);
+    }
+    public void goSport(View v){
+        Intent intent = new Intent(WaterTracker.this, SportTracker.class);
+        startActivity(intent);
+    }
+    public void goUser(View v){
+        Intent intent = new Intent(WaterTracker.this, UserProfile.class);
+        startActivity(intent);
+    }
+
+    public void add_cup(View v){
+        if (nb_of_cups < 8) {
+            shared = getSharedPreferences("com.lau.finalproject", Context.MODE_PRIVATE);
+            user_id = shared.getString("id", "");
+            picked_date = shared.getString("chosen_date", "");
+            nb_of_cups = nb_of_cups + 1;
+            total_nb = nb_of_cups + "";
+            String url1 = "http://78.108.167.52/Final/Backend/add_water.php";
+            WaterTracker.DownloadTask2 task2 = new WaterTracker.DownloadTask2();
+            task2.execute(user_id, picked_date, total_nb, url1);
+            String url2 = "http://78.108.167.52/Final/Backend/water_track.php";
+            WaterTracker.DownloadTask task = new WaterTracker.DownloadTask();
+            task.execute(user_id, picked_date, url2);
+        }else {
+            Toast.makeText(getApplicationContext(),"You reach your target already", Toast.LENGTH_LONG).show();
+        }
+        }
+        }
     }
 }
