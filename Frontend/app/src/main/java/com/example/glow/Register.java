@@ -116,7 +116,7 @@ public class Register extends AppCompatActivity {
             }else if(!entered_weight.matches( "[0-9]*" ) || entered_weight.length() == 0) {
                 text.setText("Invalid weight format!");
             }else{
-                String url = "http://78.108.167.52/MobileFinal/Backend/signup.php";
+                String url = "http://78.108.167.52/Final/Backend/signup.php";
                 DownloadTask register_task = new DownloadTask();
                 register_task.execute(entered_first_name, entered_last_name, entered_email, entered_birth, entered_gender, entered_password,entered_height, entered_weight, url);
             }

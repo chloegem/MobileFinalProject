@@ -93,7 +93,7 @@ public class Login extends AppCompatActivity {
                     obj = (JSONObject) array.get(0);
                     user_id[0] = obj.getString("user_id");
 
-                    shared = getApplicationContext().getSharedPreferences("com.lau.csc489g_finalproject", Context.MODE_PRIVATE);
+                    shared = getApplicationContext().getSharedPreferences("com.lau.finalproject", Context.MODE_PRIVATE);
                     shared.edit().putString("id",user_id[0]).commit();
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -124,7 +124,7 @@ public class Login extends AppCompatActivity {
         if (input_email.equals("") || input_password.equals("")) {
             Toast.makeText(getApplicationContext(), "Missing Info", Toast.LENGTH_LONG).show();
         } else {
-            String url = "http://78.108.167.52/MobileFinal/Backend/login.php";
+            String url = "http://78.108.167.52/Final/Backend/login.php";
             DownloadTask task = new DownloadTask();
             task.execute(input_email, input_password, url);
         }
