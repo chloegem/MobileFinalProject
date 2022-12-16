@@ -2,10 +2,12 @@ package com.example.glow;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Toast;
 
 import org.json.JSONArray;
@@ -107,5 +109,31 @@ public class FoodTracker extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_food_tracker);
+        getSupportActionBar().hide();
+    }
+    public void goHome(View v){
+        Intent intent = new Intent(FoodTracker.this, HomeActivity.class);
+        startActivity(intent);
+    }
+    public void goWater(View v){
+        Intent intent = new Intent(FoodTracker.this, WaterTracker.class);
+        startActivity(intent);
+    }
+    public void goSport(View v){
+        Intent intent = new Intent(FoodTracker.this, SportTracker.class);
+        startActivity(intent);
+    }
+    public void goUser(View v){
+        Intent intent = new Intent(FoodTracker.this, UserProfile.class);
+        startActivity(intent);
+    }
+    public void goFood(View v){
+        destination = v.getTag().toString();
+        shared = getSharedPreferences("com.lau.finalproject", Context.MODE_PRIVATE);
+        user_id = shared.getString("id", "");
+        picked_date = shared.getString("chosen_date", "");
+        String url = "http://78.108.167.52/Final/Backend/food_track.php";
+        DownloadTask task = new DownloadTask();
+        task.execute(user_id, picked_date, url);
     }
 }
