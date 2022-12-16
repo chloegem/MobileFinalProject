@@ -41,14 +41,11 @@ public class WaterTracker extends AppCompatActivity {
         protected String doInBackground(String... params) {
             String first_param = params[0];
             String second_param= params[1];
-
             URL url;
             HttpURLConnection http;
-
             try{
                 url = new URL(params[2]);
                 http = (HttpURLConnection) url.openConnection();
-
                 http.setRequestMethod("POST");
                 http.setDoInput(true);
                 http.setDoOutput(true);
@@ -163,14 +160,11 @@ public class WaterTracker extends AppCompatActivity {
             String first_param = params[0];
             String second_param = params[1];
             String third_param = params[2];
-
             URL url;
             HttpURLConnection http;
-
             try {
                 url = new URL(params[3]);
                 http = (HttpURLConnection) url.openConnection();
-
                 http.setRequestMethod("POST");
                 http.setDoInput(true);
                 http.setDoOutput(true);
