@@ -250,7 +250,5 @@ public class WaterTracker extends AppCompatActivity {
         }else {
             Toast.makeText(getApplicationContext(),"You reach your target already", Toast.LENGTH_LONG).show();
         }
-        }
-        }
     }
 }
