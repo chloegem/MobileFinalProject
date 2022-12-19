@@ -11,7 +11,7 @@ if (isset($_POST['user_id']) && isset($_POST['date'])) {
     }else if(empty($date)){
         exit();
     }else if(isset($_POST['breakfast'])){
-        $breakfast = validate($_POST['breakfast']);
+        $breakfast = $_POST['breakfast'];
         $sql = "SELECT * FROM food_consumptions WHERE user_id = '" . $user . "' AND date = " . $date . "";
         $result = mysqli_query($mysqli, $sql);
 
@@ -27,7 +27,7 @@ if (isset($_POST['user_id']) && isset($_POST['date'])) {
             echo "Data Added!";
         }
     }else if(isset($_POST['lunch'])){
-        $lunch = validate($_POST['lunch']);
+        $lunch = $_POST['lunch'];
         $sql = "SELECT * FROM food_consumptions WHERE user_id = '" . $user . "' AND date = " . $date . "";
         $result = mysqli_query($mysqli, $sql);
 
@@ -43,7 +43,7 @@ if (isset($_POST['user_id']) && isset($_POST['date'])) {
             echo "Data Added!";
         }
     }else if(isset($_POST['dinner'])){
-        $dinner = validate($_POST['dinner']);
+        $dinner = $_POST['dinner'];
         $sql = "SELECT * FROM food_consumptions WHERE user_id = '" . $user . "' AND date = " . $date . "";
         $result = mysqli_query($mysqli, $sql);
 
@@ -59,7 +59,7 @@ if (isset($_POST['user_id']) && isset($_POST['date'])) {
             echo "Data Added!";
         }
     }else if(isset($_POST['snack'])){
-        $snack = validate($_POST['snack']);
+        $snack = $_POST['snack'];
         $sql = "SELECT * FROM food_consumptions WHERE user_id = '" . $user . "' AND date = " . $date . "";
         $result = mysqli_query($mysqli, $sql);
 

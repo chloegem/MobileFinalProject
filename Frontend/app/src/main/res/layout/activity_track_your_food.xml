@@ -78,22 +78,25 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.998" />
 
-    <TextView
+    <EditText
         android:id="@+id/food_info"
-        android:layout_width="303dp"
-        android:layout_height="452dp"
+        android:layout_width="290dp"
+        android:layout_height="455dp"
+        android:layout_marginTop="136dp"
+        android:ems="10"
         android:fontFamily="@font/glacialindifferencebold"
-        android:text="Describe what you ate..."
+        android:gravity="right|left"
+        android:inputType="textPersonName"
+        android:text="Describe what you ate...."
         android:textColor="#FFFFFF"
         android:textColorHighlight="#FFFFFF"
         android:textColorHint="#FFFFFF"
         android:textColorLink="#FFFFFF"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView8"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.498" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/button3"

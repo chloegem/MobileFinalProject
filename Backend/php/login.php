@@ -1,50 +1,37 @@
 <?php
- 
- include "connection.php";
- 
- function validate($data){
-     $data = trim($data);
-     $data = stripslashes($data);
-     return $data;
+header('Access-Control-Allow-Origin: *');
+header('Access-Control-Allow-Methods: GET, POST');
+header("Access-Control-Allow-Headers: X-Requested-With");
+
+include("connection.php");
+
+if(isset($_POST["email"]) && $_POST["email"] != "" && isset($_POST["password"]) && $_POST["password"] != ""  ){
+    $User = $_POST["email"];
+    $Password = $_POST["password"];
+}else{
+     $response = [];
+     $response["success"] = false;   
+     echo json_encode($response);
+     return; 
  }
- if (isset($_POST['email']) && isset($_POST['password'])) {
- 
- $email = validate($_POST['email']);
- $password = mysqli_real_escape_string($mysqli, stripslashes(htmlspecialchars($_POST['password'])));
- 
- 
-     if (empty($email)) {
-     echo("User Name is required");
-     exit();
-     }
-     else if(empty($password)){
-         echo("Password is required");
-         exit();
-     }
-     else{
-         $query = $mysqli->prepare("SELECT * FROM users WHERE email = ?;");
-         $query->bind_param("s",$email);
-         $query->execute();
-         if($query->num_rows == 0){
-             $array = $query->get_result();
-             $row = $array->fetch_assoc();
-             $dbemail = $row['email'];
-             $dbpassword = $row['password'];
-             $response = [];
-             if ($dbemail == $email && password_verify($password, $dbpassword)) {
-                 $response[] = $row;
-                 $json_respnse = json_encode($response);
-                 echo $json_respnse;
-                 exit();
-             }   
-             else{
-                 echo("Incorrect Username or password");
-                 exit();
-             }
-         }
-         else{
-             echo("Incorrect Username or password");
-             exit();
-         }
-     }
- }
+
+$query = $mysqli->prepare("Select * from users WHERE email = ? && password=?");
+$query->bind_param("ss", $User, $Password);
+$query->execute();
+
+$array = $query->get_result();
+$response = [];
+while($credentials = $array->fetch_assoc()){
+    $response[] = $credentials;
+}
+
+if(!$response ){
+    $response["success"] = "user_does_not_exit";   
+}
+
+else{
+  
+    $response["success"] = true;   
+
+}
+echo json_encode($response);

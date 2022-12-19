@@ -2,6 +2,7 @@ package com.example.glow;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
@@ -181,6 +182,19 @@ public class TrackYourSport extends AppCompatActivity {
         else if(golf != "" && header_to_display.equalsIgnoreCase("golf")){
             exercise_info.setText(golf);
         }
+    }
+
+    public void addInfo(View view){
+        shared = getSharedPreferences("com.lau.finalproject", Context.MODE_PRIVATE);
+        user_id = shared.getString("id", "");
+        picked_date = shared.getString("chosen_date", "");
+
+        // Getting the info entered to add them to the database
+        info_to_add = exercise_info.getText().toString();
+
+        String url = "http://10.31.195.219/Final/Backend/add_to_sport.php";
+        DownloadTask task = new DownloadTask();
+        task.execute(user_id, picked_date, info_to_add, url);
     }
 
     public void goFood(View view){

@@ -14,7 +14,7 @@
          exit();
      }
      else if(isset($_POST['running'])){
-         $running = validate($_POST['running']);
+         $running = $_POST['running'];
          $sql = "SELECT * FROM exercises WHERE user_id = '" . $user . "' AND date = " . $date . "";
          $result = mysqli_query($mysqli, $sql);
  
@@ -32,7 +32,7 @@
          }
      } 
      else if (isset($_POST['dancing'])){
-         $dancing = validate($_POST['dancing']);
+         $dancing = $_POST['dancing'];
          $sql = "SELECT * FROM exercises WHERE user_id = '" . $user . "' AND date = " . $date . "";
          $result = mysqli_query($mysqli, $sql);
  
@@ -51,7 +51,7 @@
          }
      }
      else if (isset($_POST['boxing'])){
-         $boxing = validate($_POST['boxing']);
+         $boxing = $_POST['boxing'];
          $sql = "SELECT * FROM exercises WHERE user_id = '" . $user . "' AND date = " . $date . "";
          $result = mysqli_query($mysqli, $sql);
  
@@ -70,7 +70,7 @@
          }
      }
      else if (isset($_POST['baseball'])){
-         $baseball = validate($_POST['baseball']);
+         $baseball = $_POST['baseball'];
          $sql = "SELECT * FROM exercises WHERE user_id = '" . $user . "' AND date = " . $date . "";
          $result = mysqli_query($mysqli, $sql);
  
@@ -89,7 +89,7 @@
          }
      } 
      else if (isset($_POST['basketball'])){
-         $basketball = validate($_POST['basketball']);
+         $basketball = $_POST['basketball'];
          $sql = "SELECT * FROM exercises WHERE user_id = '" . $user . "' AND date = " . $date . "";
          $result = mysqli_query($mysqli, $sql);
  
@@ -108,7 +108,7 @@
          }
      }
      else if (isset($_POST['football'])){
-         $football = validate($_POST['football']);
+         $football = $_POST['football'];
          $sql = "SELECT * FROM exercises WHERE user_id = '" . $user . "' AND date = " . $date . "";
          $result = mysqli_query($mysqli, $sql);
  
@@ -127,7 +127,7 @@
          }
      }
      else if (isset($_POST['swimming'])){
-         $swimming = validate($_POST['swimming']);
+         $swimming = $_POST['swimming'];
          $sql = "SELECT * FROM exercises WHERE user_id = '" . $user . "' AND date = " . $date . "";
          $result = mysqli_query($mysqli, $sql);
  
@@ -146,7 +146,7 @@
          }
      }
      else if (isset($_POST['skiing'])){
-         $skiing = validate($_POST['skiing']);
+         $skiing = $_POST['skiing'];
          $sql = "SELECT * FROM exercises WHERE user_id = '" . $user . "' AND date = " . $date . "";
          $result = mysqli_query($mysqli, $sql);
  
@@ -165,7 +165,7 @@
          }
      }
      else if (isset($_POST['hiking'])){
-         $hiking = validate($_POST['hiking']);
+         $hiking = $_POST['hiking'];
          $sql = "SELECT * FROM exercises WHERE user_id = '" . $user . "' AND date = " . $date . "";
          $result = mysqli_query($mysqli, $sql);
  
@@ -184,7 +184,7 @@
          }
      }
      else if (isset($_POST['gymnastics'])){
-         $gymnastics = validate($_POST['gymnastics']);
+         $gymnastics = $_POST['gymnastics'];
          $sql = "SELECT * FROM exercises WHERE user_id = '" . $user . "' AND date = " . $date . "";
          $result = mysqli_query($mysqli, $sql);
  
@@ -203,7 +203,7 @@
          }
      }
      else if (isset($_POST['tennis'])){
-         $tennis = validate($_POST['tennis']);
+         $tennis = $_POST['tennis'];
          $sql = "SELECT * FROM exercises WHERE user_id = '" . $user . "' AND date = " . $date . "";
          $result = mysqli_query($mysqli, $sql);
  
@@ -221,7 +221,7 @@
          }
      }
      else if (isset($_POST['golf'])) {
-         $golf = validate($_POST['golf']);
+         $golf = $_POST['golf'];
          $sql = "SELECT * FROM exercises WHERE user_id = '" . $user . "' AND date = " . $date . "";
          $result = mysqli_query($mysqli, $sql);
  
