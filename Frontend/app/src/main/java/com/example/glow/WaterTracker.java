@@ -213,7 +213,7 @@ public class WaterTracker extends AppCompatActivity {
         shared = getSharedPreferences("com.lau.finalproject", Context.MODE_PRIVATE);
         user_id = shared.getString("id","");
         picked_date = shared.getString("chosen_date", "");
-        String url = "http://78.108.167.52/Final/Backend/water_track.php";
+        String url = "http://10.31.195.219/Final/Backend/track_your_water.php";
         WaterTracker.DownloadTask task = new WaterTracker.DownloadTask();
         task.execute(user_id, picked_date,url);
     }
@@ -241,10 +241,10 @@ public class WaterTracker extends AppCompatActivity {
             picked_date = shared.getString("chosen_date", "");
             nb_of_cups = nb_of_cups + 1;
             total_nb = nb_of_cups + "";
-            String url1 = "http://78.108.167.52/Final/Backend/add_water.php";
+            String url1 = "http://78.108.167.52/Final/Backend/add_to_water.php";
             WaterTracker.DownloadTask2 task2 = new WaterTracker.DownloadTask2();
             task2.execute(user_id, picked_date, total_nb, url1);
-            String url2 = "http://78.108.167.52/Final/Backend/water_track.php";
+            String url2 = "http://78.108.167.52/Final/Backend/track_your_water.php";
             WaterTracker.DownloadTask task = new WaterTracker.DownloadTask();
             task.execute(user_id, picked_date, url2);
         }else {

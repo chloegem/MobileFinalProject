@@ -90,7 +90,7 @@ public class HomeActivity extends AppCompatActivity {
                     ArrayList<Object> list = new ArrayList<>();
                     JSONObject obj;
 
-                    for (int i = 0; i < array.length(); i ++){
+                    for (int i = 0; i < array.length(); i++){
                         list.add(array.get(i));
                     }
                     weight = new String[array.length()];
@@ -140,7 +140,7 @@ public class HomeActivity extends AppCompatActivity {
 
         shared = getSharedPreferences("com.lau.finalproject", Context.MODE_PRIVATE);
         user_id = shared.getString("id","");
-        String url = "http://192.168.106.1/Final/Backend/getProfile.php";
+        String url = "http://10.31.195.219/Final/Backend/get_profile.php";
         HomeActivity.DownloadTask task = new HomeActivity.DownloadTask();
         task.execute(user_id,url);
 

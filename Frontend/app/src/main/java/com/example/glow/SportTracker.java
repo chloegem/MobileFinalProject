@@ -143,7 +143,7 @@ public class SportTracker extends AppCompatActivity {
             shared = getSharedPreferences("com.lau.finalproject", Context.MODE_PRIVATE);
             user_id = shared.getString("id", "");
             picked_date = shared.getString("chosen_date", "");
-            String url = "http://78.108.167.52/Final/Backend/exercise_track.php";
+            String url = "http://10.31.195.219/Final/Backend/track_your_sport.php";
             DownloadTask task = new DownloadTask();
             task.execute(user_id, picked_date, url);
         }

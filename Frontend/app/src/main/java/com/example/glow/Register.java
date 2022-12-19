@@ -2,11 +2,13 @@ package com.example.glow;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -24,7 +26,7 @@ import java.util.regex.Pattern;
 
 public class Register extends AppCompatActivity {
 
-    EditText fname, lname, email,dob, gender, height,weight,pass;
+    EditText fname,lname,email,dob,gender,height,weight,pass;
     TextView text;
     public class DownloadTask extends AsyncTask<String, Void, String> {
         protected String doInBackground(String... params) {
@@ -68,6 +70,20 @@ public class Register extends AppCompatActivity {
             } catch (Exception e) {
                 e.printStackTrace();
                 return null;
+            }
+        }
+
+        protected void onPostExecute(String result){
+
+            super.onPostExecute(result);
+            if(result.equals("Account Created!")){
+                Toast.makeText(getApplicationContext(),"Account Created!", Toast.LENGTH_LONG).show();
+                Intent intentt = new Intent(Register.this, Login.class);
+                startActivity(intentt);
+            }
+            else{
+                text.setText(result);
+                Toast.makeText(getApplicationContext(),"This account already exists", Toast.LENGTH_LONG).show();
             }
         }
     }
@@ -116,7 +132,7 @@ public class Register extends AppCompatActivity {
             }else if(!entered_weight.matches( "[0-9]*" ) || entered_weight.length() == 0) {
                 text.setText("Invalid weight format!");
             }else{
-                String url = "http://78.108.167.52/Final/Backend/signup.php";
+                String url = "http://10.31.195.219/Final/Backend/signup.php";
                 DownloadTask register_task = new DownloadTask();
                 register_task.execute(entered_first_name, entered_last_name, entered_email, entered_birth, entered_gender, entered_password,entered_height, entered_weight, url);
             }

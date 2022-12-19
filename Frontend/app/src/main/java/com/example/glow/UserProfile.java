@@ -186,7 +186,7 @@ public class UserProfile extends AppCompatActivity {
 
         shared = getSharedPreferences("com.lau.finalproject", Context.MODE_PRIVATE);
         user_id = shared.getString("id","");
-        String url = "http://78.108.167.52/Final/Backend/getProfile.php";
+        String url = "http://10.31.195.219/Final/Backend/get_profile.php";
         DownloadTask task = new DownloadTask();
         task.execute(user_id,url);
     }
@@ -203,7 +203,7 @@ public class UserProfile extends AppCompatActivity {
         startActivity(new Intent(getApplicationContext(), SportTracker.class));
     }
 
-    public void editInfo(View v){
+    public void onClick(View v){
         updated_birth_date = birth_date_text.getText().toString();
         updated_email = mail_text.getText().toString();
         updated_gender = gender_text.getText().toString();
@@ -223,7 +223,7 @@ public class UserProfile extends AppCompatActivity {
             shared = getSharedPreferences("com.lau.finalproject", Context.MODE_PRIVATE);
             user_id = shared.getString("id", "");
 
-            String url = "http://78.108.167.52/Final/Backend/updateProfile.php";
+            String url = "http://10.31.195.219/Final/Backend/update_profile.php";
             UserProfile.DownloadTask2 task = new UserProfile.DownloadTask2();
             task.execute(user_id, updated_birth_date, updated_email, updated_gender, updated_weight, updated_height, url);
         }

@@ -70,7 +70,7 @@ public class FoodTracker extends AppCompatActivity {
             }
         }
         protected void onPostExecute(String result){
-            Intent intentt = new Intent(getApplicationContext(), TrackYourFood.class);
+            Intent intentt = new Intent(FoodTracker.this, TrackYourFood.class);
             super.onPostExecute(result);
             if(result.equals("No data")){
                 Toast.makeText(getApplicationContext(),"No data on this day", Toast.LENGTH_LONG).show();
@@ -132,7 +132,7 @@ public class FoodTracker extends AppCompatActivity {
         shared = getSharedPreferences("com.lau.finalproject", Context.MODE_PRIVATE);
         user_id = shared.getString("id", "");
         picked_date = shared.getString("chosen_date", "");
-        String url = "http://78.108.167.52/Final/Backend/food_track.php";
+        String url = "http://10.31.195.219/Final/Backend/track_your_food.php";
         DownloadTask task = new DownloadTask();
         task.execute(user_id, picked_date, url);
     }

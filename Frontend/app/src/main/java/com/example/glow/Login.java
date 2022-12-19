@@ -124,7 +124,7 @@ public class Login extends AppCompatActivity {
         if (input_email.equals("") || input_password.equals("")) {
             Toast.makeText(getApplicationContext(), "Missing Info", Toast.LENGTH_LONG).show();
         } else {
-            String url = "http://78.108.167.52/Final/Backend/login.php";
+            String url = "http://10.31.195.219/Final/Backend/login.php";
             DownloadTask task = new DownloadTask();
             task.execute(input_email, input_password, url);
         }
